@@ -1,8 +1,6 @@
 const form = document.querySelector('.feedback-form');
 const LOCALE_KEY = 'feedback-form-state';
 
-// Створюємо функцію для отримання данних з форми (можна було зробити і в input, але було б забагато const)
-
 // const validEmail = element => {
 //   return element.includes('@');
 // };
@@ -36,8 +34,7 @@ infoInFields();
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  const items = getDataFromUser(form);
-  console.log(`Info: ${items}`);
+  console.log(getDataFromUser(form));
   form.reset();
   localStorage.removeItem(LOCALE_KEY);
 });
