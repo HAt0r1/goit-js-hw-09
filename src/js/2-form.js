@@ -5,7 +5,7 @@ const LOCALE_KEY = 'feedback-form-state';
 //   return element.includes('@');
 // };
 
-const getDataFromUser = element => {
+const getTrimmedFormData = element => {
   const inputValue = element.email.value.trim();
   const textAreaValue = element.message.value.trim();
   //   if (!validEmail(inputValue)) {
@@ -18,7 +18,7 @@ const getDataFromUser = element => {
 };
 
 form.addEventListener('input', () => {
-  const data = getDataFromUser(form);
+  const data = getTrimmedFormData(form);
   const jsonData = JSON.stringify(data);
   localStorage.setItem(LOCALE_KEY, jsonData);
 });
@@ -26,15 +26,17 @@ form.addEventListener('input', () => {
 const infoInFields = () => {
   let getObject = localStorage.getItem(LOCALE_KEY);
   getObject = JSON.parse(getObject);
-  form.querySelector('.email-input').value = getObject.inputValue;
-  form.querySelector('.textarea-input').value = getObject.textAreaValue;
+  if (getObject) {
+    form.querySelector('.email-input').value = getObject.inputValue;
+    form.querySelector('.textarea-input').value = getObject.textAreaValue;
+  }
 };
 
 infoInFields();
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  console.log(getDataFromUser(form));
+  console.log(getTrimmedFormData(form));
   form.reset();
   localStorage.removeItem(LOCALE_KEY);
 });
