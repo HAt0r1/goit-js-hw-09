@@ -91,9 +91,7 @@ createElements();
 
 const lightBox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
+  captionDelay: 250,
   animationSpeed: 250,
   overlayOpacity: 0.9,
-  animationSpeed: 300,
 });
-
-lightBox.on('show.show.simplelightbox', function () {});
